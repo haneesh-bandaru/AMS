@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import { Link, useNavigate } from "react-router-dom";
-import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
+// import { Button } from "./ui/button";
 import { LogOut } from "lucide-react";
 
 export function Menu({ items }) {
