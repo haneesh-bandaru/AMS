@@ -1,8 +1,7 @@
-// import { Home, User } from "lucide-react";
-// import { Menu } from "./components/Menu";
-// import Login from "./screens/Login";
-
-import RegistrationForm from "./screens/Registration";
+import { Route, Routes } from "react-router-dom";
+import Members from "./screens/employee/Members";
+import Login from "./screens/Login";
+import Registration from "./screens/Registration";
 
 const App = () => {
   // const items = [
@@ -19,9 +18,11 @@ const App = () => {
   // ];
   return (
     <div>
-      {/* <Login /> */}
-      {/* <Menu items={items} /> */}
-      <RegistrationForm  />
+      <Routes>
+        <Route path="/" Component={Login} />
+        <Route path="/register" Component={Registration} />
+        <Route path="/addMembers" Component={Members} />
+      </Routes>
     </div>
   );
 };

@@ -16,7 +16,7 @@ const DatePicker = () => {
         <Button
           variant={"outline"}
           className={cn(
-            "w-[240px] justify-start text-left font-normal",
+            "justify-start text-left font-normal",
             !date && "text-muted-foreground"
           )}
         >
@@ -25,7 +25,13 @@ const DatePicker = () => {
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
-        <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+        <Calendar
+          mode="single"
+          selected={date}
+          onSelect={setDate}
+          initialFocus
+          disabled={date => date > new Date() || date < new Date("1900-01-01")}
+        />
       </PopoverContent>
     </Popover>
   );

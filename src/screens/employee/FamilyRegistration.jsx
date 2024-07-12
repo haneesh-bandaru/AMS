@@ -1,6 +1,5 @@
 import DatePicker from "@/components/Date";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -13,9 +12,9 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
-const Registration = () => {
+const FamilyRegistration = () => {
   return (
-    <div className="border-2 rounded-lg p-10 m-5 lg:w-[600px] flex flex-col gap-5">
+    <div className="border-2 rounded-lg p-4 overflow-y-scroll overflow-x-hidden lg:w-[450px] h-[500px] flex flex-col gap-5">
       <div className="NAME flex flex-col lg:flex-row gap-x-5 gap-y-5">
         <div className="grid w-fit max-w-sm items-center gap-1.5">
           <Label htmlFor="firstName">First name</Label>
@@ -63,13 +62,13 @@ const Registration = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-3">
-        <div className="flex flex-col gap-1 w-[240px]">
+        <div className="gap-1 w-fit">
           <Label>Date of Birth</Label>
-          <DatePicker />
+          <DatePicker className="w-fit" />
         </div>
-        <div className="flex flex-col gap-1  w-[240px]">
+        <div className=" flex-col gap-1 w-fit">
           <Label>Date of Birth 2</Label>
-          <DatePicker />
+          <DatePicker className="" />
         </div>
       </div>
 
@@ -78,14 +77,9 @@ const Registration = () => {
         <Textarea placeholder="Enter your address here." id="address" rows="4" cols="50" />
       </div>
 
-      <div className="flex items-center  space-x-2">
-        <Checkbox id="terms" />
-        <Label htmlFor="terms">Accept terms and conditions</Label>
-      </div>
-
       <Button type="submit">Submit</Button>
     </div>
   );
 };
 
-export default Registration;
+export default FamilyRegistration;

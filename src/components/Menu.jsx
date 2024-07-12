@@ -5,6 +5,7 @@ import { LogOut } from "lucide-react";
 
 export function Menu({ items }) {
   //   const navigate = useNavigate();
+  
 
   return (
     <div className="bg-slate-800 flex justify-between">
