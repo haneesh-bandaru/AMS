@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import FamilyRegistration from "./FamilyRegistration";
 
 const Members = () => {
+
   const details = {
     firstName: "John",
     lastName: "Doe",
@@ -16,6 +17,9 @@ const Members = () => {
     dateOfBirth2: "1990-01-01",
     address: "123 Main Street, Anytown, Anycountry"
   };
+
+    
+
   return (
     <div className="flex gap-5 m-5">
       <Card className="w-[300px]">

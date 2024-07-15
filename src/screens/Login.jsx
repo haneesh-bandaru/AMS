@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,21 +8,23 @@ import { Toaster } from "@/components/ui/toaster";
 
 import { useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
-import { ToastAction } from "@/components/ui/toast";
+import { ToastAction } from "@radix-ui/react-toast";
 
 const Login = () => {
+  const { toast } = useToast();
+  const navigate = useNavigate();
+
   const [loginDetails, setLoginDetails] = useState({
-    userName: "",
+    email: "",
     password: ""
   });
-
-  const { toast } = useToast();
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    console.log(loginDetails);
-    if (loginDetails.userName === "admin" && loginDetails.password === "password") {
+    if (loginDetails.email === "admin" && loginDetails.password === "password") {
       setSuccess(true);
+      navigate("/emp-dashboard");
+      setLoginDetails("");
     } else {
       setSuccess(false);
     }
@@ -38,7 +40,7 @@ const Login = () => {
 
   return (
     <div>
-      <Card className="mx-auto max-w-sm translate-y-[25%]">
+      <Card className="bg-card text-card-foreground mx-auto max-w-sm translate-y-[25%]">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>Enter your email below to login to your account</CardDescription>
@@ -72,7 +74,7 @@ const Login = () => {
                   variant: !success ? "destructive" : "default",
                   title: !success ? "Oops try again" : "Success",
                   description: "Friday, February 10, 2023 at 5:57 PM",
-                  action: <ToastAction altText="Try again">Try again</ToastAction>
+                  action: !success? <ToastAction altText="Try again">Try again</ToastAction> : ``
                 });
               }}
             >

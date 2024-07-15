@@ -42,15 +42,16 @@ const FamilyRegistration = () => {
       </div>
 
       <div>
-        <Label className="mb-[-15px]">Marital Status</Label>
+        <Label className="mb-[-15px]">Relation</Label>
         <Select>
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Marital Status" />
+            <SelectValue placeholder="Relation" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="Single">Single</SelectItem>
-              <SelectItem value="Married">Married</SelectItem>
+              <SelectItem value="Father">Father</SelectItem>
+              <SelectItem value="Mother">Mother</SelectItem>
+              <SelectItem value="Spouse">Spouse</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
