@@ -1,3 +1,5 @@
+import { Menu } from "@/components/Menu";
+import { LayoutDashboard, MailWarning, Receipt, Users } from "lucide-react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 const EmpLayout = () => {
@@ -5,20 +7,24 @@ const EmpLayout = () => {
 
   const EmpArr = [
     {
-      name: "Home",
-      route: "/emp-dashboard"
+      title: "Home",
+      route: "/emp-dashboard",
+      icon: LayoutDashboard
     },
     {
-      name: "Family Members",
-      route: "addMembers"
+      title: "Family Members",
+      route: "addMembers",
+      icon: Users
     },
     {
-      name: "Raise Complaint",
-      route: "complaints"
+      title: "Raise Complaint",
+      route: "complaints",
+      icon: MailWarning
     },
     {
-      name: "History & Invoices",
-      route: "history-invoices"
+      title: "History & Invoices",
+      route: "history-invoices",
+      icon: Receipt
     }
     
   ];
@@ -29,29 +35,7 @@ const EmpLayout = () => {
 
   return (
     <div>
-      <div className="bg-slate-800 p-2 flex justify-between text-white ">
-        <ul className="flex gap-5">
-          {EmpArr.map((item, index) => (
-            <li
-              key={index}
-              onClick={() => {
-                handleNavigation(item.route);
-              }}
-              className="bg-gray-100 text-slate-900 p-2 w-fit rounded-lg cursor-pointer hover:bg-accent"
-            >
-              {item.name}
-            </li>
-          ))}
-        </ul>
-        <p
-          className="bg-gray-100 text-slate-900 p-2 w-fit rounded-lg cursor-pointer hover:bg-secondary"
-          onClick={() => {
-            handleNavigation("/");
-          }}
-        >
-          Logout
-        </p>
-      </div>
+      <Menu items={EmpArr}/>
       <Outlet />
     </div>
   );

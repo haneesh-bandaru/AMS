@@ -5,20 +5,25 @@ import Registration from "./screens/Registration";
 import EmpLayout from "./screens/employee/EmpLayout";
 import Complaints from "./screens/employee/Complaints";
 import HistoryAndInvoices from "./screens/employee/HistoryAndInvoices";
+import { Home, User } from "lucide-react";
+import Dashboard from "./screens/Admin/Dashboard";
+import Issues from "./screens/Admin/Issues";
+import Payments from "./screens/Admin/Payments";
+import Requests from "./screens/Admin/Requests";
 
 const App = () => {
-  // const items = [
-  //   {
-  //     title: "Home",
-  //     route: "home",
-  //     icon: Home
-  //   },
-  //   {
-  //     title: "Employees",
-  //     route: "/employee",
-  //     icon: User
-  //   }
-  // ];
+  const items = [
+    {
+      title: "Home",
+      route: "home",
+      icon: Home
+    },
+    {
+      title: "Employees",
+      route: "/employee",
+      icon: User
+    }
+  ];
   return (
     <div>
       <Routes>
@@ -29,6 +34,12 @@ const App = () => {
           <Route path="addMembers" Component={Members} />
           <Route path="complaints" Component={Complaints} />
           <Route path="history-invoices" Component={HistoryAndInvoices} />
+        </Route>
+
+        <Route path="/admin" Component={Dashboard}>
+      <Route path="issues" Component={Issues} />
+      <Route path="payments" Component={Payments} />
+      <Route path="requests" Component={Requests} />
         </Route>
       </Routes>
     </div>
