@@ -37,6 +37,7 @@ const Complaints = () => {
       complaintImages: files
     }));
   };
+
   const handleSelectChange = value => {
     setComplaintData(prevData => ({
       ...prevData,
@@ -50,12 +51,12 @@ const Complaints = () => {
   };
 
   return (
-    <div>
-      <Card className="bg-card text-card-foreground lg:mx-auto max-w-sm lg:translate-y-[10%] mt-20 mx-5 lg:mt-8">
+    <div className="mx-6 mt-8">
+      <Card className="bg-card text-card-foreground mx-auto max-w-sm lg:translate-y-[10%]">
         <CardHeader>
           <h1 className="text-2xl">Complaints</h1>
           <CardDescription>
-            <p className="">Enter your complaints below</p>
+            <span className="">Enter your complaints below</span>
           </CardDescription>
           <Separator />
         </CardHeader>

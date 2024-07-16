@@ -1,14 +1,12 @@
 import { Menu } from "@/components/Menu";
 import { LayoutDashboard, MailWarning, Receipt, Users } from "lucide-react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const EmpLayout = () => {
-  const navigate = useNavigate();
-
   const EmpArr = [
     {
       title: "Home",
-      route: "/emp-dashboard",
+      route: "/employee",
       icon: LayoutDashboard
     },
     {
@@ -26,16 +24,11 @@ const EmpLayout = () => {
       route: "history-invoices",
       icon: Receipt
     }
-    
   ];
-
-  function handleNavigation(route) {
-    navigate(route);
-  }
 
   return (
     <div>
-      <Menu items={EmpArr}/>
+      <Menu items={EmpArr} />
       <Outlet />
     </div>
   );

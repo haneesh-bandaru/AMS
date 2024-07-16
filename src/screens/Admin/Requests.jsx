@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/table";
 import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
 import { CreditCard, DownloadIcon, Eye } from "lucide-react";
-import FamilyRegistration from "../employee/FamilyRegistration";
+import FamilyRegistration from "../Employee/FamilyRegistration";
 
 const Requests = () => {
   const invoices = [

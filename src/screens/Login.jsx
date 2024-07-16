@@ -21,10 +21,18 @@ const Login = () => {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    if (loginDetails.email === "admin" && loginDetails.password === "password") {
+    if (
+      (loginDetails.email === "admin" || loginDetails.email === "employee") &&
+      loginDetails.password === "password"
+    ) {
       setSuccess(true);
-      navigate("/emp-dashboard");
-      setLoginDetails("");
+      if (loginDetails.email === "admin") {
+        navigate("/admin/dashboard");
+      }
+      if (loginDetails.email === "employee") {
+        navigate("/employee");
+      }
+      setLoginDetails("");  
     } else {
       setSuccess(false);
     }
@@ -74,7 +82,7 @@ const Login = () => {
                   variant: !success ? "destructive" : "default",
                   title: !success ? "Oops try again" : "Success",
                   description: "Friday, February 10, 2023 at 5:57 PM",
-                  action: !success? <ToastAction altText="Try again">Try again</ToastAction> : ``
+                  action: !success ? <ToastAction altText="Try again">Try again</ToastAction> : ``
                 });
               }}
             >

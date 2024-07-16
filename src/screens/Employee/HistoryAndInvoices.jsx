@@ -7,23 +7,23 @@ import {
   TableHeader,
   TableRow
 } from "@/components/ui/table";
-import { CircleOff, BellRing } from "lucide-react";
+import { CreditCard, DownloadIcon } from "lucide-react";
 
-const Payments = () => {
+const HistoryAndInvoices = () => {
   const invoices = [
     {
       id: 1,
-      employee_id: "6056",
+      invoice: "INV001",
       status: "Paid",
-      amount: "$0",
-      end_date: "07/10/2024"
+      method: "Credit Card",
+      amount: "$250.00"
     },
     {
       id: 2,
-      employee_id: "6062",
+      invoice: "INV001",
       status: "Not Paid",
-      amount: "$250.00",
-      end_date: "07/10/2024"
+      method: "Credit Card",
+      amount: "$250.00"
     }
 
     // Add more invoices as needed
@@ -38,17 +38,17 @@ const Payments = () => {
   };
 
   return (
-    <div className="flex justify-center flex-wrap mx-auto  items-center">
-      <div className="w-[570px]">
-        <Table className="lg:w-[550px] lg:m-5 border-2  w-[550px]">
-          <TableCaption>A list of payment status.</TableCaption>
+    <div className="flex justify-center mx-auto ">
+      <div className="mx-auto mt-20">
+        <Table className="lg:w-[500px] lg:m-5 border-2 ">
+          <TableCaption>A list of your recent invoices.</TableCaption>
           <TableHeader className="hover:bg-none">
             <TableRow>
               <TableHead>S.No</TableHead>
-              <TableHead>Employee ID</TableHead>
+              <TableHead>Invoice</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead>Due</TableHead>
-              <TableHead>End Date</TableHead>
+              <TableHead>Method</TableHead>
+              <TableHead>Amount</TableHead>
               <TableHead>Action</TableHead>
             </TableRow>
           </TableHeader>
@@ -56,22 +56,20 @@ const Payments = () => {
             {invoices.map((invoice, index) => (
               <TableRow key={invoice.id}>
                 <TableCell>{index + 1}</TableCell>
-                <TableCell className="font-medium">{invoice.employee_id}</TableCell>
+                <TableCell className="font-medium">{invoice.invoice}</TableCell>
                 <TableCell>{invoice.status}</TableCell>
+                <TableCell>{invoice.method}</TableCell>
                 <TableCell>{invoice.amount}</TableCell>
-                <TableCell>{invoice.end_date}</TableCell>
                 <TableCell className="flex items-center" onClick={() => handleClick(invoice)}>
                   {invoice.status === "Paid" ? (
                     <>
-                      <CircleOff strokeWidth={1} size={20} />
-                      {"  "}No Action
+                      <CreditCard strokeWidth={1} size={20} />
+                      {"  "}Pay
                     </>
                   ) : (
                     <>
-                      <>
-                        <BellRing strokeWidth={1} size={20} />
-                        {"  "}Notify
-                      </>
+                      <DownloadIcon strokeWidth={1} size={20} />
+                      {"  "}Download Invoice
                     </>
                   )}
                 </TableCell>
@@ -84,4 +82,4 @@ const Payments = () => {
   );
 };
 
-export default Payments;
+export default HistoryAndInvoices;

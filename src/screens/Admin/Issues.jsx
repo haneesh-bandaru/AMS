@@ -1,4 +1,4 @@
-import { DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import {
   Table,
   TableBody,
@@ -8,9 +8,7 @@ import {
   TableHeader,
   TableRow
 } from "@/components/ui/table";
-import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
-import { CreditCard, DownloadIcon, Eye } from "lucide-react";
-import FamilyRegistration from "../employee/FamilyRegistration";
+import { Eye } from "lucide-react";
 
 const Issues = () => {
   const invoices = [
@@ -39,40 +37,46 @@ const Issues = () => {
   return (
     <div className="flex justify-center mx-auto ">
       <center>
-      <Table className="lg:w-[550px] lg:m-5 border-2 ">
-        <TableCaption>A list of your recent invoices.</TableCaption>
-        <TableHeader className="hover:bg-none">
-          <TableRow>
-            <TableHead>S.No</TableHead>
-            <TableHead>Employee ID</TableHead>
-            <TableHead>Flat No.</TableHead>
-            <TableHead>Images</TableHead>
-            <TableHead>Status</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {invoices.map((invoice, index) => (
-            <TableRow key={invoice.id}>
-              <TableCell>{index + 1}</TableCell>
-              <TableCell className="font-medium">{invoice.employee_id}</TableCell>
-              <TableCell>{invoice.flat_no}</TableCell>
-              <TableCell>{
-                <Dialog>
-                  <DialogTrigger>
-                    <Eye strokeWidth={1} size={20}/>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <img></img>
-                  </DialogContent>
-                </Dialog>
-                }</TableCell>
-              <TableCell className="flex items-center" onClick={() => handleClick(invoice)}>
-                {<button className="bg-green-500 rounded-[10px] p-2 flex items-center hover:bg-green-600">Resolved</button>}
-              </TableCell>
+        <Table className="lg:w-[550px] lg:m-5 border-2 ">
+          <TableCaption>A list of your recent invoices.</TableCaption>
+          <TableHeader className="hover:bg-none">
+            <TableRow>
+              <TableHead>S.No</TableHead>
+              <TableHead>Employee ID</TableHead>
+              <TableHead>Flat No.</TableHead>
+              <TableHead>Images</TableHead>
+              <TableHead>Status</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {invoices.map((invoice, index) => (
+              <TableRow key={invoice.id}>
+                <TableCell>{index + 1}</TableCell>
+                <TableCell className="font-medium">{invoice.employee_id}</TableCell>
+                <TableCell>{invoice.flat_no}</TableCell>
+                <TableCell>
+                  {
+                    <Dialog>
+                      <DialogTrigger>
+                        <Eye strokeWidth={1} size={20} />
+                      </DialogTrigger>
+                      <DialogContent>
+                        <img></img>
+                      </DialogContent>
+                    </Dialog>
+                  }
+                </TableCell>
+                <TableCell className="flex items-center" onClick={() => handleClick(invoice)}>
+                  {
+                    <button className="bg-green-500 rounded-[10px] p-2 flex items-center hover:bg-green-600">
+                      Resolved
+                    </button>
+                  }
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </center>
     </div>
   );
