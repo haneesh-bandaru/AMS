@@ -4,11 +4,11 @@ import { Menu } from '@/components/Menu';
 import CustomPieChart from '@/components/CustomPieChart';
 import { Outlet } from 'react-router-dom';
 
-const Dashboard = () => {
+const AdminLayout = () => {
     const items = [
         {
           title: "Dashboard",
-          route: "/admin",
+          route: "dashboard",
           icon: LayoutDashboard
         },
         {
@@ -32,14 +32,9 @@ const Dashboard = () => {
         <div className='m-16'>
             <Menu items={items} />
         </div>
-        <div className='flex flex-wrap justify-around'>
-            <CustomPieChart title={"Hello"}/>
-            <CustomPieChart title={"Hello"}/>
-            <CustomPieChart title={"Hello"}/>
-        </div>
           <Outlet />
     </div>  
   )
 }
 
-export default Dashboard
+export default AdminLayout

@@ -6,10 +6,11 @@ import EmpLayout from "./screens/employee/EmpLayout";
 import Complaints from "./screens/employee/Complaints";
 import HistoryAndInvoices from "./screens/employee/HistoryAndInvoices";
 import { Home, User } from "lucide-react";
-import Dashboard from "./screens/Admin/Dashboard";
+import DashBoard from "./screens/Admin/DashBoard";
 import Issues from "./screens/Admin/Issues";
 import Payments from "./screens/Admin/Payments";
 import Requests from "./screens/Admin/Requests";
+import AdminLayout from "./screens/Admin/AdminLayout";
 
 const App = () => {
   const items = [
@@ -36,7 +37,8 @@ const App = () => {
           <Route path="history-invoices" Component={HistoryAndInvoices} />
         </Route>
 
-        <Route path="/admin" Component={Dashboard}>
+        <Route path="/admin" Component={AdminLayout}>
+        <Route path="dashboard" Component={DashBoard} />
       <Route path="issues" Component={Issues} />
       <Route path="payments" Component={Payments} />
       <Route path="requests" Component={Requests} />

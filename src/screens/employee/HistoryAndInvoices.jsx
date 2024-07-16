@@ -38,8 +38,10 @@ const HistoryAndInvoices = () => {
   };
 
   return (
-    <div className="flex justify-center mx-auto ">
-      <Table className="lg:w-[500px] lg:m-5 border-2 ">
+    <div className="flex justify-center lg:mx-auto mx-5 mt-20">
+      <center>
+
+      <Table className="lg:w-[500px] lg:m-5 border-2 " >
         <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader className="hover:bg-none">
           <TableRow>
@@ -76,6 +78,7 @@ const HistoryAndInvoices = () => {
           ))}
         </TableBody>
       </Table>
+          </center>
     </div>
   );
 };

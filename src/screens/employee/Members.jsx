@@ -21,7 +21,7 @@ const Members = () => {
     
 
   return (
-    <div className="flex gap-5 m-5">
+    <div className="flex gap-5 mt-24 mx-5">
       <Card className="w-[300px]">
         <CardHeader></CardHeader>
         <CardContent>
