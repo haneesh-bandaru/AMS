@@ -60,16 +60,16 @@ const HistoryAndInvoices = () => {
                 <TableCell>{invoice.status}</TableCell>
                 <TableCell>{invoice.method}</TableCell>
                 <TableCell>{invoice.amount}</TableCell>
-                <TableCell className="flex items-center" onClick={() => handleClick(invoice)}>
+                <TableCell className="flex items-center cursor-pointer" onClick={() => handleClick(invoice)}>
                   {invoice.status === "Paid" ? (
                     <>
                       <CreditCard strokeWidth={1} size={20} />
-                      {"  "}Pay
+                      Pay
                     </>
                   ) : (
                     <>
                       <DownloadIcon strokeWidth={1} size={20} />
-                      {"  "}Download Invoice
+                      Download Invoice
                     </>
                   )}
                 </TableCell>
