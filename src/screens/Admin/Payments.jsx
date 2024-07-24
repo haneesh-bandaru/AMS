@@ -1,3 +1,4 @@
+import { Card } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -38,9 +39,8 @@ const Payments = () => {
   };
 
   return (
-    <div className="flex justify-center flex-wrap mx-auto  items-center">
-      <div className="w-[570px]">
-        <Table className="lg:w-[550px] lg:m-5 border-2  w-[550px]">
+    <div className="flex flex-wrap">
+        <Table className="lg:w-[550px] m-6 border-2   w-[550px]">
           <TableCaption>A list of payment status.</TableCaption>
           <TableHeader className="hover:bg-none">
             <TableRow>
@@ -79,7 +79,6 @@ const Payments = () => {
             ))}
           </TableBody>
         </Table>
-      </div>
     </div>
   );
 };

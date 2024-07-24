@@ -26,10 +26,8 @@ const AdminLayout = () => {
     }
   ];
   return (
-    <div>
-      <div className="m-16">
-        <Menu items={items} />
-      </div>
+    <div className="flex">
+      <Menu items={items} className = "w-48"/>
       <Outlet />
     </div>
   );

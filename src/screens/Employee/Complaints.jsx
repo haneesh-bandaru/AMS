@@ -51,8 +51,8 @@ const Complaints = () => {
   };
 
   return (
-    <div className="mx-6 mt-8">
-      <Card className="bg-card text-card-foreground mx-auto max-w-sm lg:translate-y-[10%]">
+    <div className="m-6">
+      <Card className="bg-card text-card-foreground mx-auto max-w-sm ">
         <CardHeader>
           <h1 className="text-2xl">Complaints</h1>
           <CardDescription>

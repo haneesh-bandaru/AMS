@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Toaster } from "@/components/ui/toaster";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
 
@@ -18,32 +18,39 @@ const Login = () => {
     email: "",
     password: ""
   });
-  const [success, setSuccess] = useState(false);
 
-  useEffect(() => {
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setLoginDetails((prevDetails) => ({
+      ...prevDetails,
+      [id]: value
+    }));
+  };
+
+  const handleLogin = () => {
     if (
       (loginDetails.email === "admin" || loginDetails.email === "employee") &&
       loginDetails.password === "password"
     ) {
-      setSuccess(true);
       if (loginDetails.email === "admin") {
         navigate("/admin/dashboard");
-      }
-      if (loginDetails.email === "employee") {
+      } else if (loginDetails.email === "employee") {
         navigate("/employee");
       }
-      setLoginDetails("");  
+      setLoginDetails({ email: "", password: "" });
+      toast({
+        variant: "default",
+        title: "Success",
+        description: "Logged in successfully",
+      });
     } else {
-      setSuccess(false);
+      toast({
+        variant: "destructive",
+        title: "Oops try again",
+        description: "Incorrect email or password",
+        action: <ToastAction altText="Try again">Try again</ToastAction>
+      });
     }
-  }, [loginDetails]);
-
-  const handleInputChange = e => {
-    const { id, value } = e.target;
-    setLoginDetails(prevDetails => ({
-      ...prevDetails,
-      [id]: value
-    }));
   };
 
   return (
@@ -62,29 +69,29 @@ const Login = () => {
                 type="email"
                 placeholder="m@example.com"
                 required
+                value={loginDetails.email}
                 onChange={handleInputChange}
               />
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
                 <Label htmlFor="password">Password</Label>
-                <Link href="#" className="ml-auto inline-block text-sm underline">
+                <Link to="#" className="ml-auto inline-block text-sm underline">
                   Forgot your password?
                 </Link>
               </div>
-              <Input id="password" type="password" required onChange={handleInputChange} />
+              <Input
+                id="password"
+                type="password"
+                required
+                value={loginDetails.password}
+                onChange={handleInputChange}
+              />
             </div>
             <Button
-              type="submit"
+              type="button"
               className="w-full"
-              onClick={() => {
-                toast({
-                  variant: !success ? "destructive" : "default",
-                  title: !success ? "Oops try again" : "Success",
-                  description: "Friday, February 10, 2023 at 5:57 PM",
-                  action: !success ? <ToastAction altText="Try again">Try again</ToastAction> : ``
-                });
-              }}
+              onClick={handleLogin}
             >
               Login
             </Button>

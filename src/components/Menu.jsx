@@ -1,60 +1,68 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { LogOut, X, AlignJustify } from "lucide-react";
-// import { Button } from "./ui/button";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Separator } from "./ui/separator";
+import { X, AlignJustify } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 export function Menu({ items }) {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleNavigation = route => {
+    navigate(route);
+    if (window.innerWidth <= 1024) {
+      setIsOpen(false); // Close menu on mobile after navigation
+    }
+  };
+
   return (
-    <div className="fixed top-0 left-0 right-0 mx-6 mt-4 bg-primary  rounded-xl px-2 z-50">
-      <div className="flex items-center justify-between  lg:hidden">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center px-3 py-2 rounded  text-white hover:text-gray-400"
-        >
-          <div className={`fill-current h-8 w-8 ${isOpen ? "hidden" : "block"}`}>
-            <AlignJustify size={28} />
-          </div>
-          <div className={`fill-current h-3 w-3 mb-2 ${isOpen ? "block" : "hidden"}`}>
-            <X size={28} />
-          </div>
+    <div className="flex lg:flex-col h-fit lg:min-w-48 absolute lg:relative ">
+      {/* Menu Button */}
+      <div className="flex items-center  bg-primary justify-between p-4 h-fit bg-none lg:hidden">
+        <button onClick={() => setIsOpen(!isOpen)} className="text-white">
+          {isOpen ? <X size={24} /> : <AlignJustify size={24} />}
         </button>
       </div>
-      <div className={`lg:flex lg:items-center lg:justify-between ${isOpen ? "block" : "hidden"}`}>
-        <div className="flex flex-col lg:flex-row lg:items-center">
-          {items.map((item, index) => (
-            <Link key={index} to={item.route} className="block p-2 text-white">
-              <p
-                className="rounded-[10px] p-2 outline-none flex hover:bg-card hover:text-primary items-center "
-                onClick={() => {
-                  setIsOpen(false);
-                }}
+      <div className="lg:h-screen bg-primary flex flex-col justify-between w-48">
+        <div
+          className={`lg:flex lg:flex-col relative rounded-lg bg-primary  ${
+            isOpen ? "block" : "hidden"
+          } lg:block`}
+        >
+          <h1 className="text-primary-foreground font-bold p-4">AMS</h1>
+          <Separator />
+          <div className="flex flex-col ">
+            {items.map((item, index) => (
+              <div
+                className="text-white mt-2 cursor-pointer"
+                onClick={() => handleNavigation(item.route)}
+                key={index}
               >
-                {item.icon && <item.icon size={14} className="mr-2" />}
-                {item.title}
-              </p>
-            </Link>
-          ))}
-          {/* Logout button for smaller screens */}
-          <div className="rounded-[10px] block lg:hidden">
-            <Link to="/" className="block p-2 text-white">
-              <p className="bg-destructive rounded-[10px] p-2 flex items-center hover:bg-destructive">
-                <LogOut size={16} />
-                Logout
-              </p>
-            </Link>
+                <p
+                  className={`p-2 mx-4 my-1 rounded-md ${
+                    location.pathname === `/employee/${item.route}` ||
+                    location.pathname === `/admin/${item.route}`
+                      ? "bg-white text-primary hover:bg-white"
+                      : "hover:bg-primary/90"
+                  }`}
+                >
+                  {item.title}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
-        {/* Logout button for larger screens */}
-        <div className="rounded-[10px] hidden lg:flex lg:items-center">
-          <Link to="/" className="block p-2 text-white">
-            <p className="bg-destructive rounded-[10px] p-2 flex items-center hover:bg-red-800">
-              <LogOut size={16} />
-              Logout
-            </p>
-          </Link>
+        <div className="text-white p-4">
+          <Popover>
+            <PopoverTrigger>UserProfile</PopoverTrigger>
+            <PopoverContent className=" mx-1.5 w-36">
+              <p className="p-1.5 rounded-lg hover:bg-slate-700 hover:text-primary-foreground cursor-pointer">Notifications</p>
+              <Separator className="text-primary w-full" />
+              <p className="p-1.5 rounded-lg hover:bg-slate-700 hover:text-primary-foreground">Logout</p>
+            </PopoverContent>
+          </Popover>
         </div>
       </div>
     </div>

@@ -5,8 +5,8 @@ import { Outlet } from "react-router-dom";
 const EmpLayout = () => {
   const EmpArr = [
     {
-      title: "Home",
-      route: "/employee",
+      title: "Dashboard",
+      route: "dashboard",
       icon: LayoutDashboard
     },
     {
@@ -27,7 +27,7 @@ const EmpLayout = () => {
   ];
 
   return (
-    <div>
+    <div className="flex">
       <Menu items={EmpArr} />
       <Outlet />
     </div>

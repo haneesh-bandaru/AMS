@@ -1,13 +1,6 @@
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow
-} from "@/components/ui/table";
-import { CreditCard, DownloadIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { CreditCard, DownloadIcon, ReceiptText } from "lucide-react";
 
 const HistoryAndInvoices = () => {
   const invoices = [
@@ -25,8 +18,6 @@ const HistoryAndInvoices = () => {
       method: "Credit Card",
       amount: "$250.00"
     }
-
-    // Add more invoices as needed
   ];
 
   const handleClick = invoice => {
@@ -38,46 +29,42 @@ const HistoryAndInvoices = () => {
   };
 
   return (
-    <div className="flex justify-center mx-auto ">
-      <div className="mx-auto mt-20">
-        <Table className="lg:w-[500px] lg:m-5 border-2 ">
-          <TableCaption>A list of your recent invoices.</TableCaption>
-          <TableHeader className="hover:bg-none">
-            <TableRow>
-              <TableHead>S.No</TableHead>
-              <TableHead>Invoice</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Method</TableHead>
-              <TableHead>Amount</TableHead>
-              <TableHead>Action</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {invoices.map((invoice, index) => (
-              <TableRow key={invoice.id}>
-                <TableCell>{index + 1}</TableCell>
-                <TableCell className="font-medium">{invoice.invoice}</TableCell>
-                <TableCell>{invoice.status}</TableCell>
-                <TableCell>{invoice.method}</TableCell>
-                <TableCell>{invoice.amount}</TableCell>
-                <TableCell className="flex items-center cursor-pointer" onClick={() => handleClick(invoice)}>
-                  {invoice.status === "Paid" ? (
-                    <>
-                      <CreditCard strokeWidth={1} size={20} />
-                      Pay
-                    </>
-                  ) : (
-                    <>
-                      <DownloadIcon strokeWidth={1} size={20} />
-                      Download Invoice
-                    </>
-                  )}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
+    <div className="flex flex-col mt-6 ml-6 lg:flex-row gap-4 ">
+      {invoices.map((items, index) => (
+        <div key={index} className="  overflow-scroll lg:overflow-auto">
+          <Card className="w-56">
+            <CardHeader></CardHeader>
+            <CardContent>
+              <p className="text-xl uppercase flex items-center">
+                <ReceiptText />
+                {items.invoice}
+              </p>
+              <div>Status: {items.status}</div>
+              <div>Method: {items.method}</div>
+              <div>Amount: {items.amount}</div>
+            </CardContent>
+            <CardFooter>
+              <Button
+                onClick={() => {
+                  handleClick(items);
+                }}
+              >
+                {items.status === "Paid" ? (
+                  <>
+                    <CreditCard strokeWidth={1} size={20} />
+                    Pay Amount
+                  </>
+                ) : (
+                  <>
+                    <DownloadIcon strokeWidth={1} size={20} />
+                    Download Invoice
+                  </>
+                )}
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+      ))}
     </div>
   );
 };

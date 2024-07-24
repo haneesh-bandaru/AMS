@@ -37,8 +37,7 @@ const Requests = () => {
   };
 
   return (
-    <div className="flex justify-center mx-auto ">
-        <center>
+    <div className="">
       <Table className="lg:w-[550px] lg:m-5 border-2 ">
         <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader className="hover:bg-none">
@@ -56,24 +55,29 @@ const Requests = () => {
               <TableCell>{index + 1}</TableCell>
               <TableCell className="font-medium">{invoice.employee_id}</TableCell>
               <TableCell>{invoice.department}</TableCell>
-              <TableCell>{
-                <Dialog>
-                  <DialogTrigger>
-                    <Eye strokeWidth={1} size={20}/>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <FamilyRegistration />
-                  </DialogContent>
-                </Dialog>
-                }</TableCell>
+              <TableCell>
+                {
+                  <Dialog>
+                    <DialogTrigger>
+                      <Eye strokeWidth={1} size={20} />
+                    </DialogTrigger>
+                    <DialogContent>
+                      <FamilyRegistration />
+                    </DialogContent>
+                  </Dialog>
+                }
+              </TableCell>
               <TableCell className="flex items-center" onClick={() => handleClick(invoice)}>
-                {<button className="bg-green-500 rounded-[10px] p-2 flex items-center hover:bg-green-600">Accept</button>}
+                {
+                  <button className="bg-green-500 rounded-[10px] p-2 flex items-center hover:bg-green-600">
+                    Accept
+                  </button>
+                }
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      </center>
     </div>
   );
 };

@@ -35,9 +35,9 @@ const Issues = () => {
   };
 
   return (
-    <div className="flex justify-center mx-auto ">
-      <center>
-        <Table className="lg:w-[550px] lg:m-5 border-2 ">
+    <div className="flex ">
+    
+        <Table className="lg:w-[550px] lg:m-6 border-2 ">
           <TableCaption>A list of your recent invoices.</TableCaption>
           <TableHeader className="hover:bg-none">
             <TableRow>
@@ -77,7 +77,7 @@ const Issues = () => {
             ))}
           </TableBody>
         </Table>
-      </center>
+      
     </div>
   );
 };
